@@ -19,7 +19,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -v -o /go/bin/velero-plugin-for-gcp ./vele
 
 FROM --platform=$BUILDPLATFORM busybox:1.34.1 AS busybox
 
-FROM --platform=$BUILDPLATFORM gcr.io/distroless/base-debian10:nonroot
+FROM gcr.io/distroless/base-debian10:nonroot
 COPY --from=build /go/bin/velero-plugin-for-gcp /plugins/
 COPY --from=busybox /bin/cp /bin/cp
 USER nonroot:nonroot
